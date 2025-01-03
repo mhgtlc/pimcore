@@ -419,6 +419,7 @@ class SearchController extends UserAwareController
                     //if there is restriction to root path, and not other paths allowed, no need to check further
                     if ($forbiddenPath === '/' && !$allowedPaths) {
                         $forbiddenPathSql = [' false '];
+
                         break;
                     }
                     if ($allowedPaths) {
@@ -432,6 +433,7 @@ class SearchController extends UserAwareController
                     //if user has access to root path, no need to check for other paths and include "fullpath LIKE %" conditions that will slow down the search
                     if ($allowedPaths === '/') {
                         $allowedPathSql = [' true '];
+
                         break;
                     }
                     $allowedPathSql[] = ' fullpath LIKE ' . $db->quote($allowedPaths  . '%');

@@ -430,7 +430,7 @@ class SearchController extends UserAwareController
                     $forbiddenPathSql[] = ' (fullpath NOT LIKE ' . $db->quote($forbiddenPath . $folderSuffix . '%') . $exceptions . ') ';
                 }
                 foreach ($elementPaths['allowed'] as $allowedPaths) {
-                    //if user has access to root path, no need to check for other paths and include "fullpath LIKE %" conditions that will slow down the search
+                    //has root access, skip 'fullpath LIKE %' as it slows the search; no need to check other paths
                     if ($allowedPaths === '/') {
                         $allowedPathSql = [' true '];
 
